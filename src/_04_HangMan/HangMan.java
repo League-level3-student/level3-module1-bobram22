@@ -12,6 +12,7 @@ import javax.swing.JPanel;
 public class HangMan implements KeyListener{
 	Stack<String> s = new Stack<String>();
 	String cword;
+	int numLives = 10;
 	public static void main(String[] args) {
 		new HangMan();
 	}
@@ -37,7 +38,7 @@ public class HangMan implements KeyListener{
 		jl.setText(hword);
 		jf.setSize(300, 15);
 		livesText.setText("Number of Lives left:");
-		lives.setText("2");
+		lives.setText(""+numLives);
 		jf.setVisible(true);
 		System.out.println(cword);
 		jp.addKeyListener(this);
