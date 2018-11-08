@@ -12,7 +12,13 @@ import javax.swing.JPanel;
 public class HangMan implements KeyListener{
 	Stack<String> s = new Stack<String>();
 	String cword;
+	StringBuilder hword;
 	int numLives = 10;
+	JFrame jf=new JFrame();
+	JPanel jp = new JPanel();
+	JLabel jl = new JLabel();
+	JLabel lives=new JLabel();
+	JLabel livesText= new JLabel();
 	public static void main(String[] args) {
 		new HangMan();
 	}
@@ -22,26 +28,21 @@ public class HangMan implements KeyListener{
 		String sNum = JOptionPane.showInputDialog("How many words would you like to guess?");
 		int num = Integer.parseInt(sNum);
 		cword= Utilities.readRandomLineFromFile("dictionary.txt");
-		JFrame jf=new JFrame();
-		JPanel jp = new JPanel();
-		JLabel jl = new JLabel();
-		JLabel lives=new JLabel();
-		JLabel livesText= new JLabel();
-		String hword =  "";
+				hword = new StringBuilder();
 		for(int i = 0; i < cword.length(); i ++) {
-		hword=hword+"_";
+		hword.append("_");
 		}
 		jf.add(jp);
 		jp.add(jl);
 		jp.add(livesText);
 		jp.add(lives);
-		jl.setText(hword);
+		jl.setText(hword.toString());
 		jf.setSize(300, 15);
 		livesText.setText("Number of Lives left:");
 		lives.setText(""+numLives);
 		jf.setVisible(true);
 		System.out.println(cword);
-		jp.addKeyListener(this);
+		jf.addKeyListener(this);
 		
 	}
 
@@ -62,7 +63,14 @@ public class HangMan implements KeyListener{
 		// TODO Auto-generated method stub
 		char e = event.getKeyChar();
 		if(cword.contains(Character.toString(e))) {
-			System.out.println("hi");
+			
+			for(int i= 0 ; i < cword.length(); i ++) {
+				if(cword.charAt(i)==e) {
+					System.out.println("kjjhgjjh");
+					hword.setCharAt(i, e);
+				}
+			}
+			jl.setText(hword.toString());
 		}
 	}
 	
